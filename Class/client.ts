@@ -53,18 +53,18 @@ export class ClientOrange {
         return response.json();
     }
 
-    async getDeviceInfo() {
-        return await this.requestAuthentificated({
-            service: "DeviceInfo",
-            method: "get",
-            parameters: {},
-        });
-    }
-
     async getCurrentUser() {
         return await this.requestAuthentificated({
             service: "HTTPService",
             method: "getCurrentUser",
+            parameters: {},
+        });
+    }
+
+    async getSystemInfoDevice() {
+        return await this.requestAuthentificated({
+            service: "DeviceInfo",
+            method: "get",
             parameters: {},
         });
     }

@@ -8,6 +8,9 @@ const client = new ClientOrange(
     process.env.ORANGE_PASSWORD ?? ""
 );
 
-console.log(await client.getPortForwarding());
+const systemInfo = await client.getSystemInfoONT();
+console.log(systemInfo.status.gpon.veip0);
+
+//console.log(await client.getPortForwarding());
 //console.log(await client.setPortForwarding("123", 80, 80, "123Server"));
 //console.log(await client.deletePortForwarding("123"));
