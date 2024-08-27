@@ -53,10 +53,10 @@ export class ClientOrange {
         return response.json();
     }
 
-    async getCurrentUser() {
+    async getUsers() {
         return await this.requestAuthentificated({
-            service: "HTTPService",
-            method: "getCurrentUser",
+            service: "UserManagement",
+            method: "getUsers",
             parameters: {},
         });
     }
@@ -121,6 +121,14 @@ export class ClientOrange {
         return this.requestAuthentificated({
             service: "DHCPv4.Server.Pool.default",
             method: "getStaticLeases",
+            parameters: {},
+        });
+    }
+
+    getIPv6() {
+        return this.requestAuthentificated({
+            service: "NMC.IPv6",
+            method: "get",
             parameters: {},
         });
     }
@@ -194,5 +202,39 @@ export class ClientOrange {
                 origin: "webui",
             },
         });
+    }
+
+    rebootLivebox() {
+        return this.requestAuthentificated({
+            service: "NMC",
+            method: "reboot",
+            parameters: { reason: "GUI_Reboot" },
+        });
+    }
+
+    reloadConnection() {
+        this.requestAuthentificated({
+            service: "NeMo.Intf.data",
+            method: "setFirstParameter",
+            parameters: {
+                name: "Enable",
+                value: 0,
+                flag: "dhcp",
+                traverse: "down",
+            },
+        });
+
+        this.requestAuthentificated({
+            service: "NeMo.Intf.data",
+            method: "setFirstParameter",
+            parameters: {
+                name: "Enable",
+                value: 1,
+                flag: "dhcp",
+                traverse: "down",
+            },
+        });
+
+        return JSON.stringify({ status: null });
     }
 }
