@@ -1,4 +1,4 @@
-export class Client {
+export class ClientOrange {
     hostname: string;
     username: string;
     password: string;
@@ -69,46 +69,51 @@ export class Client {
         });
     }
 
-    async getLANIP() {
+    async getSystemInfoVoIPConfig() {
         return await this.requestAuthentificated({
             service: "NMC",
-            method: "getLANIP",
+            method: "getVoIPConfig",
             parameters: {},
         });
     }
 
-    async getMIBs(interfaceName: string) {
-        // lan, guest,
+    async getSystemInfoVoiIP() {
         return await this.requestAuthentificated({
-            service: "NeMo.Intf." + interfaceName,
+            service: "VoiceService.VoiceApplication",
+            method: "listTrunks",
+            parameters: {},
+        });
+    }
+
+    async getSystemInfoUSB() {
+        return await this.requestAuthentificated({
+            service: "Devices",
+            method: "get",
+            parameters: { expression: "usb", flags: "down" },
+        });
+    }
+
+    async getSystemInfoIPTVStatus() {
+        return await this.requestAuthentificated({
+            service: "NMC.OrangeTV",
+            method: "getIPTVStatus",
+            parameters: {},
+        });
+    }
+
+    async getSystemInfoIPTVConfig() {
+        return await this.requestAuthentificated({
+            service: "NMC.OrangeTV",
+            method: "getIPTVConfig",
+            parameters: {},
+        });
+    }
+
+    async getSystemInfoONT() {
+        return await this.requestAuthentificated({
+            service: "NeMo.Intf.veip0",
             method: "getMIBs",
-            parameters: { mibs: "wlanvap", flag: "wlanvap !secondary" },
-        });
-    }
-
-    async getNetDevStats(interfaceName: string) {
-        return await this.requestAuthentificated({
-            service: "NeMo.Intf." + interfaceName,
-            method: "getNetDevStats",
-            parameters: {},
-        });
-    }
-
-    getDHCPServerPool() {
-        return this.requestAuthentificated({
-            service: "DHCPv4.Server",
-            method: "getDHCPServerPool",
-            parameters: {},
-        });
-    }
-
-    getCompleteSchedules() {
-        return this.requestAuthentificated({
-            service: "Scheduler",
-            method: "getCompleteSchedules",
-            parameters: {
-                type: "ToD",
-            },
+            parameters: { mibs: "gpon" },
         });
     }
 

@@ -1,14 +1,31 @@
 {
-  "name": "orangeliveboxapi",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5"
-  }
+    "name": "orangeliveboxapi",
+    "version": "1.0.0",
+    "description": "Orange Livebox API",
+    "module": "Class/client.ts",
+    "type": "module",
+    "scripts": {
+        "test": "bun run ./tests/index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TrackZone1/OrangeLiveboxApi.git"
+    },
+    "keywords": [
+        "orange",
+        "livebox",
+        "api"
+    ],
+    "author": "trackzone",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/TrackZone1/OrangeLiveboxApi/issues"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "dotenv": "^16.4.5"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    }
 }
