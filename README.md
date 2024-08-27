@@ -4,6 +4,8 @@
 Get Device Info
 
 ```typescript
+import { ClientOrange } from "orangeliveboxapi";
+
 const client = new ClientOrange(
     process.env.ORANGE_HOSTNAME ?? "192.168.1.1",
     process.env.ORANGE_USERNAME ?? "admin",

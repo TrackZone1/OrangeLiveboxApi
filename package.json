@@ -1,6 +1,6 @@
 {
     "name": "orangeliveboxapi",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Orange Livebox API",
     "module": "Class/client.ts",
     "type": "module",
