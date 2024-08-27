@@ -1,11 +1,12 @@
 {
     "name": "orangeliveboxapi",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Orange Livebox API",
     "module": "Class/client.ts",
     "type": "module",
     "scripts": {
-        "test": "bun run ./tests/index.ts"
+        "test": "bun run ./tests/index.ts",
+        "publish": "npm publish --access public"
     },
     "repository": {
         "type": "git",
