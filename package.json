@@ -1,6 +1,6 @@
 {
     "name": "orangeliveboxapi",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Orange Livebox API",
     "module": "Class/client.ts",
     "type": "module",
@@ -15,7 +15,8 @@
     "keywords": [
         "orange",
         "livebox",
-        "api"
+        "api",
+        "bun"
     ],
     "author": "trackzone",
     "license": "MIT",
