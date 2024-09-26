@@ -155,7 +155,18 @@ export class ClientOrange {
         });
     }
 
-    setPortForwarding(
+    async CloudflareIPS() {
+        return (
+            (await fetch("https://www.cloudflare.com/ips-v4").then((res) =>
+                res.text()
+            )) +
+            (await fetch("https://www.cloudflare.com/ips-v6").then((res) =>
+                res.text()
+            ))
+        );
+    }
+
+    async setPortForwarding(
         id: string,
         internalPort: number,
         externalPort: number,
@@ -166,7 +177,7 @@ export class ClientOrange {
         description = "", // Name Equipment
         sourceInterface = "data",
         destinationMACAddress = "",
-        sourcePrefix = false
+        sourcePrefix: string | null = null
     ) {
         const parameters: any = {
             id,
@@ -182,8 +193,18 @@ export class ClientOrange {
             origin: "webui",
         };
 
+        const ips = await this.CloudflareIPS();
+
         if (sourcePrefix) {
-            parameters.sourcePrefix = sourcePrefix;
+            parameters.sourcePrefix =
+                sourcePrefix === "cloudflare"
+                    ? ips
+                          .split("\n")
+                          .map((ip: string) => {
+                              return ip;
+                          })
+                          .join(",")
+                    : sourcePrefix;
         }
 
         return this.requestAuthentificated({
